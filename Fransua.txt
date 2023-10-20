@@ -1,0 +1,26 @@
+#!/bin/bash
+#creating pseudo random numbers
+a=$(( RANDOM % 19 - 9 ))
+b=$(( RANDOM % 19 - 9 ))
+
+echo "Equation: x^2 - $((-a-b))x + $((a*b)) = 0"
+
+#user input of roots: root1, root2
+
+echo "Enter the roots of the equation in ascending order in 5 seconds: "
+if read -t 5 root1 root2
+then
+    echo "Your input: $root1, $root2"
+else
+    echo "TIME OUT!"
+fi
+
+#Checking the right answer
+
+if [[ $root1 -eq $a && $root2 -eq $b ]] || [[ $root1 -eq $b && $root2 -eq $a ]]
+then
+    echo "You WIN!"
+else
+    echo "You DIED!"
+    echo "Answer:$a,$b"
+fi
